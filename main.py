@@ -1,6 +1,6 @@
 import os
+import asyncio
 import httpx
-import uvicorn
 from datetime import date
 from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
@@ -41,5 +41,10 @@ def get_athlete_summary() -> str:
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
-    app = mcp.get_asgi_app()
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    asyncio.run(
+        mcp.run_async(
+            transport="streamable-http",
+            host="0.0.0.0",
+            port=port
+        )
+    )
