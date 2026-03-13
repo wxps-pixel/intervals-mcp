@@ -40,4 +40,6 @@ def get_athlete_summary() -> str:
 
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
-    mcp.run(transport="sse", host="0.0.0.0", port=port)
+    os.environ["FASTMCP_PORT"] = str(port)
+    os.environ["FASTMCP_HOST"] = "0.0.0.0"
+    mcp.run(transport="sse")
