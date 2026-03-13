@@ -42,8 +42,7 @@ def get_athlete_summary() -> str:
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 8000))
     asyncio.run(
-        mcp.run_async(
-            transport="streamable-http",
+        mcp.run_sse_async(
             host="0.0.0.0",
             port=port
         )
